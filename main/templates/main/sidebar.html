@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Your Animes Online - {{ episodio.titulo }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/dark-mode.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script scr="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="/static/dark-mode-switch.min.js"></script>
+
+</head>
+
+
+<body>  
+
+
+  <div class="container">
+      <nav class="navbar">
+          <h3 class="navbar-brand mr-auto">Dark Theme</h3>
+          <nav class="navbar-nav">
+              <div class="nav-link">
+                  <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="darkSwitch">
+                  </div>
+              </div>
+          </nav>
+      </nav>
+      <main>
+          <div class="">
+            <div class="row">
+              {{ anime }}
+              <video width="75%" controls>
+                  <source src="{{ episodio.source }}" type="video/mp4">
+              </video>
+              <div>
+                {{ episodio.titulo }}
+              </div>
+            </div>          
+      </main>
+  </div>
+
+
+</body>
+
+</html>
