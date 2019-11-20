@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% if error %}
+		<h3>{{ error }}</h3>
+	{% else %}
+		{{ contato.nome }}
+		{{ contato.sobrenome }}
+		{{ contato.telefone }}
+		<img src="{{ contato.foto_url }}" width="100">
+	{% endif %}
+</body>
+</html>
