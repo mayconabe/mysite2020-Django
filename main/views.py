@@ -11,7 +11,7 @@ from django.urls import reverse
 # Create your views here.
 
 ERROS = {
-	403: 'Acesso negado',
+	403: 'Você nao tem permissão para entrar',
 	404: 'Pagina não encontrada',
 	500: 'Erro interno'
 }
@@ -36,10 +36,8 @@ class IndexView(LoggedView):
 	def get(self, request):
 		data = {
 			'animes': Anime.objects.all(),
-			'usuario': request.user
+			'episodio': Episodio.objects.all()
 		}
-
-		print(request.user)
 
 		return render(request, 'main/index.html', data)
 
@@ -48,7 +46,6 @@ class EpisodioView(LoggedView):
 	def get(self, request, id_=None):
 		data = {
 			'episodio': get_object_or_404(Episodio, pk=id_)
-
 		}
 		return render(request, 'main/episodio.html', data)
 
@@ -77,5 +74,25 @@ class ErrorView(View):
 			'erro': ERROS[tipo_erro],
 		}
 		return render(request, 'main/erro.html', data)
+
+class MinhaListaView(View):
+
+	def get(self, request):
+
+
+		return render(request, 'main/minhalista.html', None)
+
+class AnimesView(View):
+
+	def get(self, request):
+		data = {
+			'animes': Anime.objects.all()
+		}
+		return render(request, 'main/animes.html', data)
+
+class RecentAddView(View):
+
+	def get(self, request):
+		return render(request, 'main/adicionadosrecentemente.html', None)
 
 		

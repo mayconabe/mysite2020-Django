@@ -6,7 +6,9 @@ from django.contrib.auth.models import User as DjangoUser
 # Create your models here.
 TIPO = [
 	('N', 'Normal'),
-	('F', 'Filler')
+	('F', 'Filler'),
+	('filme', 'Filme'),
+	('ova', 'OVA')
 ]
 
 GENEROS = [
@@ -14,15 +16,26 @@ GENEROS = [
 	('comedia', 'Comédia'),
 	('aventura', 'Aventura'),
 	('sliceoflife', 'Slice of life'),
-	('romance', 'Romance')
-
+	('romance', 'Romance'),
+	('ecchi', 'Ecchi'),
+	('faroeste', 'Faroeste'),
+	('scifi', 'Sci-Fi'),
+	('horror', 'Terror'),
+	('guerra', 'Guerra'),
+	('policial', 'Policial'),
+	('investigacao', 'Investigação'),
+	('artesmarciais', 'Artes Marciais'),
+	('isekai', 'Isekai'),
+	('shoujo', 'Shoujo'),
+	('josei', 'Josei'),
+	('shounen', 'Shounen'),
+	('kodomo', 'Kodomo'),
 ]
 
 TAGS = [
 	('violencia', 'violencia'),
 	('linguagem ofensiva', 'Linguagem Ofensiva'),
-	('ecchi', 'Ecchi')
-
+	('ecchi', 'Ecchi'),
 ]
 
 
@@ -52,7 +65,7 @@ class Anime(models.Model):
 	sinopse = models.CharField(max_length=600)
 	class_indicativa = models.IntegerField()
 	imagem = models.CharField(max_length=200)
-	visualizacoes = models.IntegerField()
+	visualizacoes = models.IntegerField(default=0)
 
 	@property
 	def ult_episodio(self):
@@ -88,15 +101,15 @@ class Episodio(models.Model):
 	temporada = models.ForeignKey(Temporada, on_delete=models.CASCADE)
 	numero = models.IntegerField()
 	titulo = models.CharField(max_length=200)
-	sinopse = models.CharField(max_length=1000)
+	sinopse = models.CharField(max_length=2000)
 	duracao = models.IntegerField()
 	tipo = models.CharField(choices=TIPO, max_length=2)
 	tags = models.ManyToManyField(Tag)
 	data_criacao = models.DateTimeField('Data de criação')
 	data_adicao = models.DateTimeField('Data de Adição')
 	imagem = models.CharField(max_length=200)
-	curtidas = models.IntegerField()
-	naogostei = models.IntegerField()
+	curtidas = models.IntegerField(default=0)
+	naogostei = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.titulo

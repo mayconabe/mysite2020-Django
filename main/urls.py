@@ -20,6 +20,9 @@ from main.views import EpisodioView
 from main.views import LoginView
 from main.views import ErrorView
 from main.views import LogoutView
+from main.views import MinhaListaView
+from main.views import AnimesView
+from main.views import RecentAddView
 
 urlpatterns = [
 	#path('novo/', CadastroView.as_view(), name='cadastros'),
@@ -28,6 +31,9 @@ urlpatterns = [
     path('error/<int:tipo_erro>', ErrorView.as_view(), name='error'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('minhalista/', MinhaListaView.as_view(), name='minhalista'),
+    path('animes/', AnimesView.as_view(), name='animes'),
+    path('recentadd/', RecentAddView.as_view(), name='recentadd'),
 	#path('detalhes/<int:contato_id>', DetalhesView.as_view(), name='detalhes'),
     #path('editar/<int:contato_id>', CadastroView.as_view(), name='editar'),
     #path('delete/<int:contato_id>', DeleteView.as_view(), name='delete')

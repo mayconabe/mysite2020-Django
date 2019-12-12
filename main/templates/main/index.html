@@ -1,85 +1,82 @@
 <!DOCTYPE html>
 <html>
+
+  <title>Your Animes Online</title>
+
 <head>
-	<title>Animes</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="/static/js/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css"> 
+
 </head>
+
 <body>
-
-{% extends "main/base.html" %}
-
-{% block title %} Media Gallery {% endblock title %}
-
-{% block stylesheets %}
-  {{ block.super }}
-{% endblock stylesheets %}
-
-{% block content %}
-  <div class="right_col" role="main">
-    <div class="">
-      <div class="page-title">
-        <div class="title_left">
-          <h3> Animes </h3>
-        </div>
-
-        <div class="title_right">
-          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="clearfix"></div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="x_panel">
-            <div class="x_title">
-              <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-
-              <div class="row">
-                <p>Lista de Animes</p>
-                {% for a in animes %}
-                <div class="col-md-55">
-                  <div class="thumbnail">
-                    <div class="image view view-first">
-                      <img style="width: 100%; display: block;" src="{{ a.capa }}"/>
-	                    <div class="mask">
-	                       	<p>{{ a.sinopse }}</p>
-	                       	<div class="tools tools-bottom">
-	                        	<p>{{ a.genero }}</p>
-	                        </div>
-						          </div>
-	        
-	                   </div>
-                        <div class="caption">
-                          {% if a.ult_episodio.id %}
-                            <p><a href="{% url 'episodio' a.ult_episodio.id %}">{{ a.nome }}</p>
-                          {% else %}
-                            ola
-                          {% endif %}
-
-                        </div>
-                  </div>
-                </div>
-                {% endfor %}
+  <header>
+      <h2 class="logo"><a href="{% url 'index' %}" style="color: white; text-decoration: none;">YourAnimesOnline</a></h2>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <nav>
+        <ul>
+          <li><a href="{% url 'animes' %}" style="text-decoration: none;">Animes</a></li>
+          <li><a href="{% url 'recentadd' %}" style="text-decoration: none;">Adicionados recentemente</a></li>
+          <li><a href="{% url 'minhalista' %}" style="text-decoration: none;">Minha Lista</a></li>
+          <li><a href="#" style="text-decoration: none;">Sobre</a></li>
+          <li>
+            <div class="dropdown">
+              <a class="dropbtn"><img src="/static/login.png/" alt="logo" width="32px" height="32" style="margin-top: -20%;"></a>
+              <div class="dropdown-content">
+                <a href="#">Perfil</a>
+                <a href="{% url 'logout' %}">Sair</a>
               </div>
             </div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-{% endblock content %}
+          </li>
+        </ul>
+      </nav>
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+  </header>
 
-{% block javascripts %}
-  {{ block.super }}
-{% endblock javascripts %}
+    <video width="100%" height="650px" controls autoplay>
+      <source src="media/episodios/camellia.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
+  
+    <div class="scroll">
+        <div class="contain">
+
+          <div class="slider">
+              <h3>Ação</h3>
+              <span id="setaEsquerda" class="handle handlePrev active">
+                  <i class="fa fa-caret-left" aria-hidden="true"></i>
+              </span>
+        
+              <div id="scroller" class="row">
+                <div class="row__inner">
+                  {% for a in animes %}
+                  <div class="gui-card">
+                    <div class="gui-card__media">
+                      {% if a.ult_episodio.id %}
+                      <img class="gui-card__img" src="{{ a.capa }}" alt="image" />
+                      {% endif %}
+                    </div>
+                    {% if a.ult_episodio.id %}
+                    <div class="gui-card__details">
+                      <div class="gui-card__title">
+                        <a href="{% url 'episodio' a.ult_episodio.id %}" style="text-decoration: none;">{{ a.nome }}</a>
+                      </div>
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+              <span id="setaDireita" class="handle handleNext active">
+                  <i class="fa fa-caret-right" aria-hidden="true"></i>
+              </span>
+            </div>
+    </div>
+  </header>
 </body>
+
 </html>
